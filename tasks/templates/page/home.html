@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block content %}
+
+<main class="container py-5 mt-5">
+  <section
+    class="card card-body text-dark border-light shadow"
+    style="background-color: #f5f5f5"
+  >
+    <h1 class="display-3 text-center" style="color: #121212">
+      <strong>Bienvenido a TickDone</strong>
+    </h1>
+
+    <p class="mt-4 text-secondary">
+      <strong>TickDone</strong> es una aplicación
+      <strong>CRUD</strong> desarrollada con <strong>Python</strong> y
+      <strong>Django</strong>. Su propósito es ayudarte a gestionar tus tareas
+      diarias de manera clara y ordenada.
+    </p>
+
+    <p class="text-secondary">
+      Puedes <strong>crear</strong> nuevas tareas, <strong>ver</strong> tus
+      pendientes, <strong>actualizarlas</strong> cuando cambien y
+      <strong>eliminarlas</strong> cuando ya no las necesites.
+    </p>
+
+    <ul class="text-dark">
+      <li>✅ Marca tareas como completadas</li>
+      <li>✏️ Edita los detalles cuando lo necesites</li>
+      <li>🗑️ Elimina lo que ya no sirve</li>
+    </ul>
+
+    <p class="text-secondary">
+      Esta app fue creada como proyecto personal para practicar buenas prácticas
+      en desarrollo web con Django.
+    </p>
+
+    <!-- Logos de Django y Python -->
+    <div class="text-center mt-4">
+      <img
+        src="https://www.djangoproject.com/m/img/logos/django-logo-negative.svg"
+        alt="Django Logo"
+        style="width: 150px; margin-right: 20px"
+      />
+      <img
+        src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png"
+        alt="Python Logo"
+        style="width: 150px"
+      />
+    </div>
+  </section>
+</main>
+
+{% endblock %}

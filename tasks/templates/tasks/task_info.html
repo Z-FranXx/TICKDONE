@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% block content %}
+<main class="container py-5 mt-5">
+  <h1 class="text-center mb-4" style="color: #121212">Actualizar Tarea</h1>
+
+  <!-- Mostrar errores si existen -->
+  {% if error %}
+  <div class="alert alert-danger" role="alert">{{ error }}</div>
+  {% endif %}
+
+  <!-- Formulario para actualizar la tarea -->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <form method="POST" action="{% url 'task_info' task.id %}">
+            {% csrf_token %} {{ form.as_p }}
+
+            <div class="d-grid gap-2 mt-4">
+              <button
+                type="submit"
+                class="btn btn-dark"
+                style="background-color: #121212"
+              >
+                Actualizar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón para marcar como completada -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+      <form action="{% url 'task_complete' task.id %}" method="POST">
+        {% csrf_token %}
+        <button
+          type="submit"
+          class="btn btn-success w-100"
+          onclick="return confirm('¿Estás seguro que quieres marcar como completada la tarea?')"
+        >
+          Marcar como Completada
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Botón para eliminar la tarea -->
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-6">
+      <form action="{% url 'task_delete' task.id %}" method="POST">
+        {% csrf_token %}
+        <button
+          type="submit"
+          class="btn btn-danger w-100"
+          onclick="return confirm('¿Estás seguro que quieres eliminar la tarea?')"
+        >
+          Eliminar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Botón para volver a la lista -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-6 text-center">
+      <a
+        href="{% url 'tasks' %}"
+        class="btn btn-outline-secondary w-100"
+        style="font-weight: bold"
+      >
+        Volver a la Lista
+      </a>
+    </div>
+  </div>
+</main>
+{% endblock %}

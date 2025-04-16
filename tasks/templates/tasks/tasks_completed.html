@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block content %}
+<main class="container py-5 mt-5">
+  <h1 class="text-center mb-4" style="color: #121212">Tareas Completadas</h1>
+
+  {% if tasks %}
+  <div class="row justify-content-center">
+    {% for task in tasks %}
+    <div class="col-md-6 mb-4">
+      <div class="card shadow border-0 border-success bg-light">
+        <header class="card-header bg-success text-white text-center">
+          <h4 class="card-title mb-0">
+            <strong>✅ {{ task.title }}</strong>
+          </h4>
+        </header>
+        <div class="card-body text-center">
+          <p class="card-text text-muted">
+            Completada el: {{ task.datecompleted|date:'M j, Y H:i' }}
+          </p>
+          <form
+            action="{% url 'task_delete' task.id %}"
+            method="POST"
+            style="display: inline"
+          >
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="btn btn-danger btn-sm"
+              onclick="return confirm('¿Estás seguro que quieres eliminar esta tarea?')"
+            >
+              Eliminar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="text-center text-muted">No tienes tareas completadas.</p>
+  {% endif %}
+</main>
+{% endblock %}

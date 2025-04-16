@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TICKDONE APP</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #121212;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="font-weight: bold; font-size: 1.5rem;">
+          TICKDONE
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav justify-content-center w-100">
+            <li class="nav-item mx-3">
+              <a
+                class="nav-link text-white fs-5 fw-bold {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+                href="{% url 'home' %}"
+              >
+                Home
+              </a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item mx-3">
+              <a
+                class="nav-link text-white fs-5 {% if request.resolver_match.url_name == 'tasks' %}active{% endif %}"
+                href="{% url 'tasks' %}"
+              >
+                Tareas
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a
+                class="nav-link text-white fs-5 {% if request.resolver_match.url_name == 'tasks_completed' %}active{% endif %}"
+                href="{% url 'tasks_completed' %}"
+              >
+                Tareas Completadas
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a
+                class="nav-link text-white fs-5 {% if request.resolver_match.url_name == 'create_tasks' %}active{% endif %}"
+                href="{% url 'create_tasks' %}"
+              >
+                Nueva Tarea
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a class="nav-link text-white fs-5" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item mx-3">
+              <a
+                class="nav-link text-white fs-5 {% if request.resolver_match.url_name == 'signup' %}active{% endif %}"
+                href="{% url 'signup' %}"
+              >
+                Sign Up
+              </a>
+            </li>
+            <li class="nav-item mx-3">
+              <a
+                class="nav-link text-white fs-5 {% if request.resolver_match.url_name == 'login' %}active{% endif %}"
+                href="{% url 'login' %}"
+              >
+                Login
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container my-5">{% block content %} {% endblock %}</main>
+  </body>
+</html>

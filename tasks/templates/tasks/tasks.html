@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% block content %}
+<main class="container py-5 mt-5">
+  <h1 class="text-center mb-4" style="color: #121212">Tareas Pendientes</h1>
+
+  {% if tasks %}
+  <div class="row justify-content-center">
+    {% for task in tasks %}
+    <div class="col-md-6 mb-4">
+      <div
+        class="card shadow border-0 {% if task.important %}border-danger bg-light{% else %}border-secondary{% endif %}"
+      >
+        <!-- Header para las tareas -->
+        <header
+          class="card-header {% if task.important %}bg-danger text-white{% else %}bg-secondary text-white{% endif %} text-center"
+        >
+          <h4 class="card-title mb-0">
+            {% if task.important %}
+            <strong>🔥 {{ task.title }}</strong>
+            {% else %} {{ task.title }} {% endif %}
+          </h4>
+        </header>
+        <div class="card-body text-center">
+          <p class="card-text text-muted">{{ task.description }}</p>
+          <p class="card-text">
+            <small class="text-muted"
+              ><strong>Usuario:</strong> {{ task.user.username }}</small
+            >
+          </p>
+          {% if task.datecompleted %}
+          <p class="card-text">
+            <small class="text-success"
+              >Completada el: {{ task.datecompleted|date:'M j, Y H:i' }}</small
+            >
+          </p>
+          {% endif %}
+          <a
+            href="{% url 'task_info' task.id %}"
+            class="btn btn-dark btn-sm"
+            style="background-color: #121212"
+          >
+            Ver Detalles
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="text-center text-muted">No tienes tareas pendientes.</p>
+  {% endif %}
+</main>
+{% endblock %}
