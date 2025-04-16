@@ -15,7 +15,8 @@ Esta aplicación permite a los usuarios agregar, editar, marcar como completadas
 ## Tecnologías utilizadas
 - **Python**  
 - **Django**  
-- **Bootstrap**  
+- **Bootstrap**
+- **SQLite** (usado para la base de datos localmente)
 - **PostgreSQL** (usado en Render para la base de datos)  
 - **Virtualenv** para el entorno virtual
 
