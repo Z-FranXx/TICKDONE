@@ -48,11 +48,10 @@ SECRET_KEY: Clave secreta de Django (puedes generar una nueva con django.core.ma
 DATABASE_URL: La cadena de conexión de tu base de datos PostgreSQL (si usas Render, obtén la URL de la base de datos en el panel de Render).
 Realiza las migraciones para crear las tablas en la base de datos:
 
-    ```Bash
     python manage.py migrate
 
 7. Crea un superusuario para acceder al panel de administración de Django:
-    ```Bash
+   ```Bash
     python manage.py createsuperuser
     
 8. Inicia el servidor localmente:
